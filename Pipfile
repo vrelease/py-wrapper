@@ -1,0 +1,23 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+
+[dev-packages]
+jedi = "*"
+black = "*"
+pylint = "*"
+pylint-fail-under = "*"
+pytest = "*"
+pytest-sugar = "*"
+pytest-xdist = "*"
+twine = "*"
+dataclasses = "*"
+
+[requires]
+python_version = "3.8"
+
+[pipenv]
+allow_prereleases = true

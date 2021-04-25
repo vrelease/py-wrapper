@@ -9,18 +9,18 @@ from os.path import join
 
 def get_platform_bin():
     plt = lambda s: 'vrelease-' + s
-    system = platform.system()
+    osys = platform.system()
 
-    if system == 'Linux':
+    if osys == 'Linux':
         return plt('linux')
 
-    if system == 'Darwin':
+    if osys == 'Darwin':
         return plt('macos')
 
-    if system == 'Windows':
+    if osys == 'Windows':
         return plt('windows.exe')
 
-    raise RuntimeError(f'unsupported platform {system}')
+    raise RuntimeError(f'unsupported platform {osys}')
 
 
 def main():
@@ -36,7 +36,7 @@ def main():
         cmd = '{} {}'.format(bin_path, ' '.join(cli_input)).strip()
         system(cmd)
 
-    except Exception as err:
+    except Exception as err:  # pylint: disable=broad-except
         print(str(err))
         sys.exit(2)
 

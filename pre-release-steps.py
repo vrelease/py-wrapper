@@ -18,7 +18,10 @@ with open(join(HERE, 'vrelease-bin', 'meta.py')) as data:
     exec(data.read(), meta)
 
 bin_file = lambda f: abspath(join(HERE, 'vrelease-bin', 'bin', f))
-artifact_url = lambda f: 'https://github.com/vrelease/vrelease/releases/download/v{}/{}'.format(meta['VERSION'], f)
+artifact_url = lambda f: 'https://github.com/vrelease/vrelease/releases/download/v{}/{}'.format(
+    meta['VERSION'], f
+)
+
 log = lambda m: print(f' ~ {m}')
 
 

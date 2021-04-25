@@ -152,4 +152,4 @@ Thumbs.db
 
 # End of https://www.toptal.com/developers/gitignore/api/python
 
-vrelease-bin/bin/vrelease-*
+vrelease/bin/vrelease-*

@@ -1,0 +1,5 @@
+URL = 'https://github.com/vrelease/vrelease-py'
+VERSION = '0.2.0'
+REQUIRES_PYTHON = '>=3.6.1'
+AUTHOR = 'Caian R. Ertl'
+EMAIL = 'hi@caian.org'

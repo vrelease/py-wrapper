@@ -1,5 +1,21 @@
 name: code-check
 
+on:
+  push:
+    branches:
+      - "*"
+    tags:
+      - "*"
+    paths-ignore:
+      - "**.md"
+  pull_request:
+    branches:
+      - "*"
+    tags:
+      - "*"
+    paths-ignore:
+      - "**.md"
+
 jobs:
   code-check:
     runs-on: ubuntu-latest

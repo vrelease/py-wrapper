@@ -1,5 +1,21 @@
 name: run-test
 
+on:
+  push:
+    branches:
+      - "*"
+    tags:
+      - "*"
+    paths-ignore:
+      - "**.md"
+  pull_request:
+    branches:
+      - "*"
+    tags:
+      - "*"
+    paths-ignore:
+      - "**.md"
+
 jobs:
   run-test:
     runs-os: ${{ matrix.os }}

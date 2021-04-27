@@ -26,7 +26,7 @@ def get_platform_bin():
 def main():
     try:
         arch = platform.machine()
-        if arch != 'x86_64':
+        if arch not in ('x86_64', 'AMD64')
             raise RuntimeError('unsupported architecture ' + arch)
 
         file = get_platform_bin()

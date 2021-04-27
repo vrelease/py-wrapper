@@ -43,5 +43,8 @@ jobs:
       - name: Install with setup
         run: python3 setup.py install
 
-      - name: Run vrelease
+      - name: Run vrelease (version)
+        run: vrelease -v
+
+      - name: Run vrelease (help)
         run: vrelease -h

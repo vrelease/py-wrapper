@@ -17,6 +17,7 @@ HERE = abspath(dirname(__file__))
 
 
 # README
+LONG_DESCR =''
 with open(join(HERE, 'README.md'), encoding='utf-8') as data:
     LONG_DESCR = '\n' + data.read()
 
@@ -57,15 +58,11 @@ class UploadCommand(Command):
         self.status('Uploading the package to PyPI via Twine…')
         system('twine upload dist/*')
 
-        self.status('Pushing git tags…')
-        system('git tag v{0}'.format(meta['VERSION']))
-        system('git push --tags')
-
         sys.exit()
 
 
 setup(
-    name=NAME,
+    name=meta['NAME'],
     version=meta['VERSION'],
     description=meta['DESCRIPTION'],
     long_description=LONG_DESCR,

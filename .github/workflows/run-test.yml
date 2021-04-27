@@ -1,0 +1,25 @@
+name: run-test
+
+jobs:
+  run-test:
+    runs-os: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        py-version: [3.5, 3.6, 3.7, 3.8, 3.9, 3.10]
+
+    steps:
+      - name: Checkout to vrelease-py
+        uses: actions/checkout@v2
+
+      - name: Set up Python ${{ matrix.py-version }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.py-version }}
+
+      - name: Install with setup
+        run: python3 setup.py install
+
+      - name: Run vrelease
+        run: vrelease -h

@@ -18,9 +18,9 @@ dataclasses = "*"
 requests = "*"
 
 [scripts]
-"fix:style" = "black -l 100 -S vrelease-bin"
-"check:lint" = "pylint --fail-under 9 --rcfile .pylintrc --output-format colorized --verbose vrelease-bin"
-"check:style" = "black -l 100 -S --check vrelease-bin"
+"fix:style" = "black -l 100 -S vrelease"
+"check:lint" = "pylint --fail-under 9 --rcfile .pylintrc --output-format colorized --verbose vrelease"
+"check:style" = "black -l 100 -S --check vrelease"
 "prepublish" = "python pre-release-steps.py"
 
 [requires]

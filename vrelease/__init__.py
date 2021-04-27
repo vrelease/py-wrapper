@@ -20,14 +20,14 @@ def get_platform_bin():
     if osys == 'Windows':
         return plt('windows.exe')
 
-    raise RuntimeError(f'unsupported platform {osys}')
+    raise RuntimeError('unsupported platform ' + osys)
 
 
 def main():
     try:
         arch = platform.machine()
         if arch != 'x86_64':
-            raise RuntimeError(f'unsupported architecture {arch}')
+            raise RuntimeError('unsupported architecture ' + arch)
 
         file = get_platform_bin()
         bin_path = abspath(join(dirname(__file__), 'bin', file))

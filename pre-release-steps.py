@@ -22,7 +22,7 @@ artifact_url = lambda f: 'https://github.com/vrelease/vrelease/releases/download
     meta['VERSION'], f
 )
 
-log = lambda m: print(f' ~ {m}')
+log = lambda m: print(' ~ ' + m)
 
 
 def download_and_write(filename):
@@ -48,7 +48,7 @@ def main():
     log('calculating hashes')
     shasum = []
     for file in files:
-        system(f'chmod +x ' + file)
+        system('chmod +x ' + file)
         shasum.append('{} {}'.format(get_sha512_hex_of(file), basename(file)))
 
     with open(join(HERE, SHASUM_FILENAME), 'w') as file:

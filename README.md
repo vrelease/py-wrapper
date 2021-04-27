@@ -8,7 +8,7 @@ Python wrapper for [`vrelease`][vrelease]. Install with pipenv:
 pipenv install --dev vrelease-bin
 ```
 
-Or:
+Or pip:
 
 ```sh
 pip install vrelease-bin

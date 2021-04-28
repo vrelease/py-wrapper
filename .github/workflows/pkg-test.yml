@@ -2,17 +2,8 @@ name: pkg-test
 
 on:
   push:
-    branches:
-      - "*"
     tags:
-      - "*"
-    paths-ignore:
-      - "**.md"
-  pull_request:
-    branches:
-      - "*"
-    tags:
-      - "*"
+      - "v*"
     paths-ignore:
       - "**.md"
 

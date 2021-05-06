@@ -60,7 +60,7 @@ def main():
         system('git commit -m "chore: update binary hashes"')
         system('git tag v' + meta['VERSION'])
     except Exception as err:
-        log('got: ' str(err))
+        log('got: ' + str(err))
         log('skipping tag...')
 
     log('done')

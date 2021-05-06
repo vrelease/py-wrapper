@@ -17,6 +17,11 @@ jobs:
         py-version: [3.5, 3.6, 3.7, 3.8, 3.9]
 
     steps:
+      - name: Set up Python ${{ matrix.py-version }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.py-version }}
+
       - name: Install vrelease-bin
         run: pip3 install vrelease-bin
 

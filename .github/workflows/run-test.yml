@@ -29,6 +29,11 @@ jobs:
       - name: Checkout to vrelease-py
         uses: actions/checkout@v2
 
+      - name: Configure git
+        run: |
+          git config --global user.email "hi@caian.org"
+          git config --global user.name "Caian R. Ertl"
+
       - name: Set up Python ${{ matrix.py-version }}
         uses: actions/setup-python@v2
         with:

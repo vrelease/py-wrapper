@@ -54,10 +54,14 @@ def main():
     with open(join(HERE, SHASUM_FILENAME), 'w') as file:
         file.write('\n'.join(shasum))
 
-    log('closing tag')
-    system('git add ' + SHASUM_FILENAME)
-    system('git commit -m "chore: update binary hashes"')
-    system('git tag v' + meta['VERSION'])
+    try:
+        log('closing tag')
+        system('git add ' + SHASUM_FILENAME)
+        system('git commit -m "chore: update binary hashes"')
+        system('git tag v' + meta['VERSION'])
+    except Exception as err:
+        log('got: ' str(err))
+        log('skipping tag...')
 
     log('done')
 

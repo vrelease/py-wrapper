@@ -1,7 +1,7 @@
 NAME = 'vrelease-bin'
 URL = 'https://github.com/vrelease/vrelease-py'
 DESCRIPTION = 'binary wrapper for vrelease - a kiss solution to easily create project releases'
-VERSION = '0.2.0'
+VERSION = '0.3.0'
 REQUIRES_PYTHON = '>=3.5'
 AUTHOR = 'Caian R. Ertl'
 EMAIL = 'hi@caian.org'

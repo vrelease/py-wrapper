@@ -19,6 +19,7 @@ requests = "*"
 "check:lint" = "pylint --fail-under 9 --rcfile .pylintrc --output-format colorized --verbose vrelease"
 "check:style" = "black -l 100 -S --check vrelease"
 "prepublish" = "python pre-release-steps.py"
+"publish" = "python setup.py upload"
 
 [requires]
 python_version = "3.8"

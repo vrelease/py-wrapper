@@ -20,7 +20,7 @@
 [tag-url]: https://github.com/vrelease/vrelease-py/releases
 
 
-# `vrelease-py`
+# `vrelease-py-wrapper`
 
 <img src="icon.svg" height="240px" align="right"/>
 

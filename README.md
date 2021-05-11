@@ -39,6 +39,37 @@ pip install vrelease-bin
 [vrelease]: https://github.com/vrelease/vrelease
 
 
+## How can I use it?
+
+### Global install
+
+```sh
+pip install vrelease-bin
+```
+
+Sudo privileges might be needed. After that, `vrelease` will be available at
+`PATH`. Simply:
+
+```sh
+vrelease -h
+```
+
+### Per project basis
+
+When installing on a single project, add a script to your `Pipfile`:
+
+```toml
+[scripts]
+"vrelease:help" = "vrelease -h"
+```
+
+And run like any pipenv script:
+
+```sh
+pipenv run vrelease:help
+```
+
+
 ## License
 
 To the extent possible under law, [Caian Rais Ertl][me] has waived __all

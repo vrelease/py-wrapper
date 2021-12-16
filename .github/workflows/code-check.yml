@@ -29,14 +29,17 @@ jobs:
         with:
           python-version: 3.8
 
-      - name: Install pipenv
-        run: pip3 install pipenv
+      - name: Install poetry
+        run: pip3 install poetry
 
-      - name: Install dev dependencies
-        run: pipenv install --dev
+      - name: Install dependencies
+        run: poetry install
+
+      - name: Shell into the virtualenv
+        run: poetry shell
 
       - name: Check code style
-        run: pipenv run check:style
+        run: poe check:style
 
       - name: Check lint
-        run: pipenv run check:lint
+        run: poe check:lint

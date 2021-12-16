@@ -7,6 +7,7 @@ from os.path import join
 from hashlib import sha512
 
 # 3rd-party
+import toml
 import requests
 
 
@@ -14,21 +15,19 @@ HERE = dirname(__file__)
 SHASUM_FILENAME = 'SHASUM512'
 
 meta = {}
-with open(join(HERE, 'vrelease', 'meta.py')) as data:
-    exec(data.read(), meta)
+with open(join(HERE, 'pyproject.toml'), 'r') as data:
+    meta = toml.loads(data.read())
 
-bin_file = lambda f: abspath(join(HERE, 'vrelease', 'bin', f))
-artifact_url = lambda f: 'https://github.com/vrelease/vrelease/releases/download/v{}/{}'.format(
-    meta['VERSION'], f
-)
+VERSION = meta['tool']['poetry']['version']
+
 
 log = lambda m: print(' ~ ' + m)
 
-
 def download_and_write(filename):
-    dest_path = bin_file(filename)
+    dest_path = abspath(join(HERE, 'vrelease-bin', 'bin', filename))
+    url = 'https://github.com/vrelease/vrelease/releases/download/v{}/{}'.format(VERSION, filename)
 
-    req = requests.get(artifact_url(filename), stream=True)
+    req = requests.get(url, stream=True)
     with open(dest_path, 'wb') as file:
         for chunk in req.iter_content(chunk_size=8192):
             file.write(chunk)
@@ -58,7 +57,7 @@ def main():
         log('closing tag')
         system('git add ' + SHASUM_FILENAME)
         system('git commit -m "chore: update binary hashes"')
-        system('git tag v' + meta['VERSION'])
+        system('git tag v' + VERSION)
     except Exception as err:
         log('got: ' + str(err))
         log('skipping tag...')

@@ -43,7 +43,7 @@ jobs:
         run: pip3 install requests poetry
 
       - name: Run pre-release steps
-        run: python3 pre-release-steps.py
+        run: poe prepublish
 
       - name: Build wheel
         run: poetry build

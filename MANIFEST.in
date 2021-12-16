@@ -1,4 +1,0 @@
-include icon.svg
-include LICENSE
-include SHASUM512
-include vrelease/bin/vrelease-*

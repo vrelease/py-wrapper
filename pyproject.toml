@@ -44,6 +44,7 @@ pylint            = "^2.12.2"
 pylint-fail-under = "^0.3.0"
 requests          = "^2.26.0"
 poethepoet        = "^0.11.0"
+toml              = "^0.10.2"
 
 [tool.poe.tasks]
 "fix:style"   = "black -l 100 -S vrelease-bin"

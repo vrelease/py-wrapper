@@ -45,11 +45,8 @@ jobs:
       - name: Install dependencies
         run: poetry install
 
-      - name: Shell into the virtualenv
-        run: poetry shell
-
       - name: Run pre-release steps
-        run: poe prepublish
+        run: poetry run poe prepublish
 
       - name: Build wheel
         run: poetry build

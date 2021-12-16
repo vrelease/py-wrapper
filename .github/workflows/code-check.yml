@@ -35,11 +35,8 @@ jobs:
       - name: Install dependencies
         run: poetry install
 
-      - name: Shell into the virtualenv
-        run: poetry shell
-
       - name: Check code style
-        run: poe check:style
+        run: poetry run poe check:style
 
       - name: Check lint
-        run: poe check:lint
+        run: poetry run poe check:lint

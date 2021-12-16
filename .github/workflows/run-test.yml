@@ -39,16 +39,17 @@ jobs:
         with:
           python-version: ${{ matrix.py-version }}
 
-      - name: Install requests
+      - name: Install pre-release required packages
         run: pip3 install requests poetry
 
       - name: Run pre-release steps
         run: python3 pre-release-steps.py
 
-      - name: Build wheel and install
-        run: |
-          poetry build
-          pip3 install dist/vrelease_bin-*.whl
+      - name: Build wheel
+        run: poetry build
+
+      - name: Install vrelease
+        run: pip3 install dist/vrelease_bin-*.whl
 
       - name: Run vrelease (version)
         run: vrelease -v

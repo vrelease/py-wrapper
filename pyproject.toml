@@ -24,7 +24,10 @@ include = [
     "icon.svg",
     "LICENSE",
     "SHASUM512",
-    "vrelease"
+    "vrelease",
+    "vrelease/bin/vrelease-linux",
+    "vrelease/bin/vrelease-macos",
+    "vrelease/bin/vrelease-windows.exe",
 ]
 
 packages = [

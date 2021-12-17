@@ -19,11 +19,14 @@ on:
 jobs:
   run-test:
     runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        shell: bash
 
     strategy:
       matrix:
         os: [ubuntu-latest, macos-latest, windows-latest]
-        py-version: [3.5, 3.6, 3.7, 3.8, 3.9]
+        py-version: ["3.6", "3.7", "3.8", "3.9", "3.10"]
 
     steps:
       - name: Checkout to vrelease-py
@@ -32,21 +35,27 @@ jobs:
       - name: Configure git
         run: |
           git config --global user.email "hi@caian.org"
-          git config --global user.name "Caian R. Ertl"
+          git config --global user.name "Caian Ertl"
 
       - name: Set up Python ${{ matrix.py-version }}
         uses: actions/setup-python@v2
         with:
           python-version: ${{ matrix.py-version }}
 
-      - name: Install requests
-        run: pip3 install requests
+      - name: Install pre-release required packages
+        run: pip3 install requests poetry
+
+      - name: Install dependencies
+        run: poetry install
 
       - name: Run pre-release steps
-        run: python3 pre-release-steps.py
+        run: poetry run poe prepublish
 
-      - name: Install with setup
-        run: python3 setup.py install
+      - name: Build wheel
+        run: poetry build
+
+      - name: Install vrelease
+        run: pip3 install dist/vrelease_bin-*.whl
 
       - name: Run vrelease (version)
         run: vrelease -v

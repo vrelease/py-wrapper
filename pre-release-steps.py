@@ -24,7 +24,7 @@ VERSION = meta['tool']['poetry']['version']
 log = lambda m: print(' ~ ' + m)
 
 def download_and_write(filename):
-    dest_path = abspath(join(HERE, 'vrelease-bin', 'bin', filename))
+    dest_path = abspath(join(HERE, 'vrelease', 'bin', filename))
     url = 'https://github.com/vrelease/vrelease/releases/download/v{}/{}'.format(VERSION, filename)
 
     req = requests.get(url, stream=True)

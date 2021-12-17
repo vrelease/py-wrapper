@@ -4,8 +4,8 @@ version     = "0.3.2"
 description = "binary wrapper for vrelease - a kiss solution to easily create project releases"
 authors     = ["Caian Ertl <hi@caian.org>"]
 license     = "CC0-1.0"
-homepage    = "https://github.com/vrelease/vrelease-py"
-repository  = "https://github.com/vrelease/vrelease-py"
+homepage    = "https://github.com/vrelease/py-wrapper"
+repository  = "https://github.com/vrelease/py-wrapper"
 classifiers = [
     # Trove classifiers
     # Full list: https://pypi.python.org/pypi?%3Aaction=list_classifiers
@@ -24,15 +24,15 @@ include = [
     "icon.svg",
     "LICENSE",
     "SHASUM512",
-    "vrelease-bin"
+    "vrelease"
 ]
 
 packages = [
-    { include = "vrelease-bin" }
+    { include = "vrelease" }
 ]
 
 [tool.poetry.scripts]
-vrelease = "vrelease-bin:main"
+vrelease = "vrelease:main"
 
 [tool.poetry.dependencies]
 python = "^3.6.2"
@@ -47,9 +47,9 @@ poethepoet        = "^0.11.0"
 toml              = "^0.10.2"
 
 [tool.poe.tasks]
-"fix:style"   = "black -l 100 -S vrelease-bin"
-"check:lint"  = "pylint --fail-under 9 --rcfile .pylintrc --output-format colorized --verbose vrelease-bin"
-"check:style" = "black -l 100 -S --check vrelease-bin"
+"fix:style"   = "black -l 100 -S vrelease"
+"check:lint"  = "pylint --fail-under 9 --rcfile .pylintrc --output-format colorized --verbose vrelease"
+"check:style" = "black -l 100 -S --check vrelease"
 "prepublish"  = "python pre-release-steps.py"
 
 [build-system]

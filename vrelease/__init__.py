@@ -8,17 +8,16 @@ from os.path import join
 
 
 def get_platform_bin():
-    plt = lambda s: 'vrelease-' + s
     osys = platform.system()
 
     if osys == 'Linux':
-        return plt('linux')
+        return 'linux'
 
     if osys == 'Darwin':
-        return plt('macos')
+        return 'macos'
 
     if osys == 'Windows':
-        return plt('windows.exe')
+        return 'windows.exe'
 
     raise RuntimeError('unsupported platform ' + osys)
 
@@ -29,7 +28,7 @@ def main():
         if arch not in ('x86_64', 'AMD64'):
             raise RuntimeError('unsupported architecture ' + arch)
 
-        file = get_platform_bin()
+        file = 'vrelease-' + get_platform_bin()
         bin_path = abspath(join(dirname(__file__), 'bin', file))
 
         cli_input = sys.argv[1:]

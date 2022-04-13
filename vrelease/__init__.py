@@ -32,7 +32,7 @@ def main():
         bin_path = abspath(join(dirname(__file__), 'bin', file))
 
         cli_input = sys.argv[1:]
-        cmd = '{} {}'.format(bin_path, ' '.join(cli_input)).strip()
+        cmd = f'{bin_path} {" ".join(cli_input)}'.strip()
         system(cmd)
 
     except Exception as err:  # pylint: disable=broad-except

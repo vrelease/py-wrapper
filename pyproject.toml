@@ -41,18 +41,17 @@ vrelease = "vrelease:main"
 python = "^3.6.2"
 
 [tool.poetry.dev-dependencies]
-jedi              = "0.18.1"
-black             = "21.12b0"
-pylint            = "2.12.2"
-pylint-fail-under = "0.3.0"
-requests          = "2.26.0"
-poethepoet        = "0.11.0"
-toml              = "0.10.2"
+black      = "22.3.0"
+jedi       = "0.18.1"
+poethepoet = "0.13.1"
+pylint     = "2.13.5"
+requests   = "2.27.1"
+toml       = "0.10.2"
 
 [tool.poe.tasks]
-"fix:style"   = "black -l 100 -S vrelease"
+"fix:style"   = "black -l 120 -S vrelease"
 "check:lint"  = "pylint --fail-under 9 --rcfile .pylintrc --output-format colorized --verbose vrelease"
-"check:style" = "black -l 100 -S --check vrelease"
+"check:style" = "black -l 120 -S --check vrelease"
 "prepublish"  = "python pre-release-steps.py"
 
 [build-system]

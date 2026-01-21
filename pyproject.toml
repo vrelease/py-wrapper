@@ -42,7 +42,7 @@ python = "^3.6.2"
 
 [tool.poetry.dev-dependencies]
 black      = "22.3.0"
-jedi       = "0.18.1"
+jedi       = "0.19.2"
 poethepoet = "0.13.1"
 pylint     = "2.13.5"
 requests   = "2.27.1"

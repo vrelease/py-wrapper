@@ -32,6 +32,9 @@ jobs:
       - name: Checkout to vrelease-py
         uses: actions/checkout@v6
 
+      - name: Set up uv
+        uses: astral-sh/setup-uv@v5
+
       - name: Configure git
         run: |
           git config --global user.email "hi@caian.org"
@@ -42,23 +45,20 @@ jobs:
         with:
           python-version: ${{ matrix.py-version }}
 
-      - name: Install pre-release required packages
-        run: pip3 install requests poetry
-
       - name: Install dependencies
-        run: poetry install
+        run: uv sync --group dev
 
       - name: Run pre-release steps
-        run: poetry run poe prepublish
+        run: uv run python pre-release-steps.py
 
       - name: Build wheel
-        run: poetry build
+        run: uv build
 
       - name: Install vrelease
-        run: pip3 install dist/vrelease_bin-*.whl
+        run: uv pip install -p .venv/bin/python dist/vrelease_bin-*.whl
 
       - name: Run vrelease (version)
-        run: vrelease -v
+        run: uv run vrelease -v
 
       - name: Run vrelease (help)
-        run: vrelease -h
+        run: uv run vrelease -h

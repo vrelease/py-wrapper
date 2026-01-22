@@ -1,60 +1,52 @@
-[tool.poetry]
-name        = "vrelease-bin"
-version     = "0.3.2"
+[project]
+name = "vrelease-bin"
+version = "0.3.2"
 description = "binary wrapper for vrelease - a kiss solution to easily create project releases"
-authors     = ["Caian Ertl <hi@caian.org>"]
-license     = "CC0-1.0"
-homepage    = "https://github.com/vrelease/py-wrapper"
-repository  = "https://github.com/vrelease/py-wrapper"
+readme = "README.md"
+license = { text = "CC0-1.0" }
+authors = [
+  { name = "Caian Ertl", email = "hi@caian.org" }
+]
+requires-python = ">=3.8"
 classifiers = [
-    # Trove classifiers
-    # Full list: https://pypi.python.org/pypi?%3Aaction=list_classifiers
-
-    "Environment :: Console",
-    "Programming Language :: Python",
-    "Programming Language :: Python :: 3.8",
-    "Programming Language :: Python :: 3.9",
-    "Programming Language :: Python :: 3.10",
-    "Programming Language :: Python :: 3.11",
-    "Programming Language :: Python :: 3.12",
-    "Programming Language :: Python :: 3.13",
-    "License :: CC0 1.0 Universal (CC0 1.0) Public Domain Dedication"
+  "Environment :: Console",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "License :: CC0 1.0 Universal (CC0 1.0) Public Domain Dedication",
 ]
 
-include = [
-    "icon.svg",
-    "LICENSE",
-    "SHASUM512",
-    "vrelease",
-    "vrelease/bin/vrelease-linux",
-    "vrelease/bin/vrelease-macos",
-    "vrelease/bin/vrelease-windows.exe",
-]
+[project.urls]
+Homepage = "https://github.com/vrelease/py-wrapper"
+Repository = "https://github.com/vrelease/py-wrapper"
 
-packages = [
-    { include = "vrelease" }
-]
-
-[tool.poetry.scripts]
+[project.scripts]
 vrelease = "vrelease:main"
 
-[tool.poetry.dependencies]
-python = "^3.8"
+[dependency-groups]
+dev = [
+  "black==24.4.2",
+  "jedi==0.19.2",
+  "pylint==3.2.7",
+  "requests==2.31.0",
+  "toml==0.10.2",
+]
 
-[tool.poetry.dev-dependencies]
-black      = "22.3.0"
-jedi       = "0.18.1"
-poethepoet = "0.13.1"
-pylint     = "2.13.5"
-requests   = "2.27.1"
-toml       = "0.10.2"
+[tool.hatch.build]
+include = [
+  "icon.svg",
+  "LICENSE",
+  "SHASUM512",
+  "vrelease/**",
+]
 
-[tool.poe.tasks]
-"fix:style"   = "black -l 120 -S vrelease"
-"check:lint"  = "pylint --fail-under 9 --rcfile .pylintrc --output-format colorized --verbose vrelease"
-"check:style" = "black -l 120 -S --check vrelease"
-"prepublish"  = "python pre-release-steps.py"
+[tool.hatch.build.targets.wheel]
+packages = ["vrelease"]
 
 [build-system]
-requires      = ["poetry-core>=1.0.0"]
-build-backend = "poetry.core.masonry.api"
+requires = ["hatchling>=1.28.0"]
+build-backend = "hatchling.build"

@@ -24,19 +24,19 @@ jobs:
       - name: Checkout to vrelease-py
         uses: actions/checkout@v6
 
+      - name: Set up uv
+        uses: astral-sh/setup-uv@v5
+
       - name: Set up Python 3.8
         uses: actions/setup-python@v6
         with:
           python-version: 3.8
 
-      - name: Install poetry
-        run: pip3 install poetry
-
       - name: Install dependencies
-        run: poetry install
+        run: uv sync --group dev
 
       - name: Check code style
-        run: poetry run poe check:style
+        run: uv run black -l 120 -S --check vrelease
 
       - name: Check lint
-        run: poetry run poe check:lint
+        run: uv run pylint --fail-under 9 --rcfile .pylintrc --output-format colorized --verbose vrelease

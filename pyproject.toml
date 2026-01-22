@@ -12,11 +12,12 @@ classifiers = [
 
     "Environment :: Console",
     "Programming Language :: Python",
-    "Programming Language :: Python :: 3.6",
-    "Programming Language :: Python :: 3.7",
     "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
     "License :: CC0 1.0 Universal (CC0 1.0) Public Domain Dedication"
 ]
 
@@ -38,7 +39,7 @@ packages = [
 vrelease = "vrelease:main"
 
 [tool.poetry.dependencies]
-python = "^3.6.2"
+python = "^3.8"
 
 [tool.poetry.dev-dependencies]
 black      = "22.3.0"

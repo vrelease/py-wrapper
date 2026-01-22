@@ -1,7 +1,7 @@
 # standard
-import sys
 import platform
-from os import system
+import subprocess
+import sys
 from os.path import abspath
 from os.path import dirname
 from os.path import join
@@ -9,12 +9,21 @@ from os.path import join
 
 def get_platform_bin():
     osys = platform.system()
+    arch = platform.machine()
 
     if osys == 'Linux':
-        return 'linux'
+        if arch in ('x86_64', 'AMD64'):
+            return 'linux'
+        if arch in ('arm64', 'aarch64'):
+            return 'linux-arm64'
+        raise RuntimeError('unsupported architecture ' + arch)
 
     if osys == 'Darwin':
-        return 'macos'
+        if arch in ('x86_64', 'AMD64'):
+            return 'macos-x86_64'
+        if arch in ('arm64',):
+            return 'macos-arm64'
+        raise RuntimeError('unsupported architecture ' + arch)
 
     if osys == 'Windows':
         return 'windows.exe'
@@ -24,16 +33,11 @@ def get_platform_bin():
 
 def main():
     try:
-        arch = platform.machine()
-        if arch not in ('x86_64', 'AMD64'):
-            raise RuntimeError('unsupported architecture ' + arch)
-
         file = 'vrelease-' + get_platform_bin()
         bin_path = abspath(join(dirname(__file__), 'bin', file))
 
-        cli_input = sys.argv[1:]
-        cmd = f'{bin_path} {" ".join(cli_input)}'.strip()
-        system(cmd)
+        result = subprocess.run([bin_path, *sys.argv[1:]])
+        sys.exit(result.returncode)
 
     except Exception as err:  # pylint: disable=broad-except
         print(str(err))

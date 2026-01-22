@@ -51,6 +51,9 @@ jobs:
       - name: Run pre-release steps
         run: uv run python pre-release-steps.py
 
+      - name: Install pip in venv
+        run: uv run -m ensurepip --upgrade
+
       - name: Build wheel
         run: uv build
 

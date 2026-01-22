@@ -32,7 +32,7 @@ dev = [
   "black==24.4.2",
   "jedi==0.19.2",
   "pylint==3.2.7",
-  "requests==2.31.0",
+  "requests==2.32.5",
   "toml==0.10.2",
 ]
 

@@ -4,10 +4,10 @@
 [![PyPI Downloads][pypi-shield]][pypi-url]
 [![GitHub tag][tag-shield]][tag-url]
 
-[gh-run-t-shield]: https://img.shields.io/github/workflow/status/vrelease/vrelease-py/run-test?label=run%20test&logo=github&style=flat-square
+[gh-run-t-shield]: https://img.shields.io/github/actions/workflow/status/vrelease/vrelease-py/run-test.yml?branch=main&label=run%20test&logo=github&style=flat-square
 [gh-run-t-url]: https://github.com/vrelease/vrelease-py/actions/workflows/run-test.yml
 
-[gh-pkg-t-shield]: https://img.shields.io/github/workflow/status/vrelease/vrelease-py/pkg-test?label=package%20test&logo=github&style=flat-square
+[gh-pkg-t-shield]: https://img.shields.io/github/actions/workflow/status/vrelease/vrelease-py/pkg-test.yml?branch=main&label=package%20test&logo=github&style=flat-square
 [gh-pkg-t-url]: https://github.com/vrelease/vrelease-py/actions/workflows/pkg-test.yml
 
 [lgtm-shield]: https://img.shields.io/lgtm/grade/python/g/vrelease/vrelease-py.svg?logo=lgtm&style=flat-square

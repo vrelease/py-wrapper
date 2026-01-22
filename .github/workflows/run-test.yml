@@ -45,6 +45,13 @@ jobs:
         with:
           python-version: ${{ matrix.py-version }}
 
+      - name: Install OpenSSL (Windows)
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          choco install openssl --no-progress -y
+          Add-Content $env:GITHUB_PATH "C:\\Program Files\\OpenSSL-Win64\\bin"
+
       - name: Install dependencies
         run: uv sync --group dev
 

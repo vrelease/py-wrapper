@@ -37,9 +37,6 @@ def download_and_write(filename):
     url = 'https://github.com/vrelease/vrelease/releases/download/v{}/{}'.format(VERSION, filename)
 
     req = requests.get(url, stream=True, timeout=30)
-    if req.status_code == 404:
-        log('missing artifact: ' + filename)
-        return None
     req.raise_for_status()
     with tempfile.NamedTemporaryFile(delete=False, dir=dirname(dest_path)) as tmp_file:
         for chunk in req.iter_content(chunk_size=8192):
@@ -71,14 +68,11 @@ def main():
         for f in [
             'linux',
             'linux-arm64',
-            'macos-x86_64',
             'macos-arm64',
+            'macos-x86_64',
             'windows.exe',
         ]
     ]
-    files = [file for file in files if file]
-    if not files:
-        raise RuntimeError('no artifacts downloaded')
 
     log('calculating hashes')
     shasum = []

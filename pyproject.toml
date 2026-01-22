@@ -1,6 +1,6 @@
 [project]
 name = "vrelease-bin"
-version = "0.3.2"
+version = "0.4.0"
 description = "binary wrapper for vrelease - a kiss solution to easily create project releases"
 readme = "README.md"
 license = { text = "CC0-1.0" }

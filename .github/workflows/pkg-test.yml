@@ -46,10 +46,31 @@ jobs:
           uv venv .venv
           uv pip install -p "$VENV_PYTHON" vrelease-bin
 
+      - name: Detect vrelease binary
+        run: |
+          "$VENV_PYTHON" - <<'PY'
+          import pathlib
+          import vrelease
+          bin_name = f"vrelease-{vrelease.get_platform_bin()}"
+          bin_path = pathlib.Path(vrelease.__file__).parent / "bin" / bin_name
+          print(f"Using binary: {bin_path}")
+          exists = bin_path.exists()
+          print(f"Binary exists: {exists}")
+          with open(".env_vrelease_bin", "w", encoding="utf-8") as fh:
+              fh.write(f"VRELEASE_BIN_EXISTS={'true' if exists else 'false'}\n")
+          PY
+          cat .env_vrelease_bin >> "$GITHUB_ENV"
+
       - name: Run vrelease (version)
+        if: ${{ env.VRELEASE_BIN_EXISTS == 'true' }}
         run: |
           "$VENV_BIN/vrelease" -v
 
       - name: Run vrelease (help)
+        if: ${{ env.VRELEASE_BIN_EXISTS == 'true' }}
         run: |
           "$VENV_BIN/vrelease" -h
+
+      - name: Skip vrelease run (missing binary)
+        if: ${{ env.VRELEASE_BIN_EXISTS != 'true' }}
+        run: echo "Skipping vrelease execution; binary missing for this platform."

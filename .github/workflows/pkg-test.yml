@@ -47,7 +47,9 @@ jobs:
           uv pip install -p "$VENV_PYTHON" vrelease-bin
 
       - name: Run vrelease (version)
-        run: "$VENV_BIN/vrelease" -v
+        run: |
+          "$VENV_BIN/vrelease" -v
 
       - name: Run vrelease (help)
-        run: "$VENV_BIN/vrelease" -h
+        run: |
+          "$VENV_BIN/vrelease" -h

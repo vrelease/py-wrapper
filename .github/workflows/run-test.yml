@@ -41,7 +41,7 @@ jobs:
           git config --global user.name "Caian Ertl"
 
       - name: Set up Python ${{ matrix.py-version }}
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: ${{ matrix.py-version }}
 

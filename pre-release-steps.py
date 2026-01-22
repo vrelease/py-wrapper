@@ -22,7 +22,12 @@ meta = {}
 with open(join(HERE, 'pyproject.toml'), 'r') as data:
     meta = toml.loads(data.read())
 
-VERSION = meta['tool']['poetry']['version']
+VERSION = (
+    meta.get('project', {}).get('version')
+    or meta.get('tool', {}).get('poetry', {}).get('version')
+)
+if not VERSION:
+    raise RuntimeError('version not found in pyproject.toml')
 
 
 log = lambda m: print(' ~ ' + m)

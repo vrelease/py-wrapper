@@ -10,6 +10,9 @@ on:
 jobs:
   run-test:
     runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        shell: bash
 
     strategy:
       matrix:
@@ -17,21 +20,34 @@ jobs:
         py-version: ["3.8", "3.9", "3.10", "3.11", "3.12", "3.13"]
 
     steps:
+      - name: Checkout to vrelease-py
+        uses: actions/checkout@v4
+
       - name: Set up uv
         uses: astral-sh/setup-uv@v5
 
       - name: Set up Python ${{ matrix.py-version }}
-        uses: actions/setup-python@v6
+        uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.py-version }}
+
+      - name: Define venv paths
+        run: |
+          if [ "${RUNNER_OS}" = "Windows" ]; then
+            echo "VENV_PYTHON=.venv/Scripts/python.exe" >> "$GITHUB_ENV"
+            echo "VENV_BIN=.venv/Scripts" >> "$GITHUB_ENV"
+          else
+            echo "VENV_PYTHON=.venv/bin/python" >> "$GITHUB_ENV"
+            echo "VENV_BIN=.venv/bin" >> "$GITHUB_ENV"
+          fi
 
       - name: Install vrelease-bin
         run: |
           uv venv .venv
-          uv pip install -p .venv/bin/python vrelease-bin
+          uv pip install -p "$VENV_PYTHON" vrelease-bin
 
       - name: Run vrelease (version)
-        run: .venv/bin/vrelease -v
+        run: "$VENV_BIN/vrelease" -v
 
       - name: Run vrelease (help)
-        run: .venv/bin/vrelease -h
+        run: "$VENV_BIN/vrelease" -h
